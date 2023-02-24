@@ -2,7 +2,14 @@ import streamlit as st
 import numpy as np
 import time
 
- st.title("用鼠标和 AI 打乒乓")
+
+st.title("用鼠标和 AI 打乒乓")
+
+   #web app主体部分
+def play_game(value):
+ st.write(value)
+
+
 def move_ball(paddle_pos, ball_pos, ball_dir):
     """移动球"""
     # 更新球的位置
@@ -63,15 +70,10 @@ def play_game(difficulty):
         time.sleep(0.01)
 
     st.write("再来一局？")
-
     restart = st.button("重新开始")
     if restart:
-        play_game(difficulty)
+        running = false
         
-       
-   #web app主体部分
-def main():
-   play_game(3)
-
-if __name__ == '__main__':
-    main()
+        
+difficulty = st.slider("选择难度?", 1, 10, 5)
+play_game(difficulty)
