@@ -5,10 +5,6 @@ import time
 
 st.title("用鼠标和 AI 打乒乓")
 
-   #web app主体部分
-def play_game(value):
- st.write(value)
-
 
 def move_ball(paddle_pos, ball_pos, ball_dir):
     """移动球"""
