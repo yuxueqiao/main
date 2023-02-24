@@ -1,38 +1,27 @@
 import streamlit as st
 from PIL import Image
+import time
 
-def move_image(start_pos, end_pos, image):
-    """将图像从起始位置移动到目标位置"""
-    st_canvas = st.sidebar.empty()
-    canvas_result = st_canvas.canvas(
-        width=300, height=300, background_color="#fff", key="canvas"
-    )
+# 加载网络图片
+image_url = "http://cw.hubwiz.com/images/cw-cta-1.png"
+image = Image.open(image_url)
+width, height = image.size
+scale = 0.3  # 调整图片大小
+image = image.resize((int(scale * width), int(scale * height)))
 
-    step_size = 0.05
-    curr_pos = start_pos
-    while curr_pos != end_pos:
-        # 清空画布
-        canvas_result.clear()
+# 设置初始位置和移动速度
+x_pos = 0
+speed = 5
 
-        # 绘制图像
-        canvas_result.image(image, curr_pos, curr_pos + 0.2)
+while True:
+    # 创建画布并绘制图片
+    canvas = st.empty()
+    canvas.image(image, use_column_width=True, clamp=True)
 
-        # 计算下一步位置
-        step_dir = (end_pos - start_pos) / abs(end_pos - start_pos)
-        curr_pos += step_dir * step_size
+    # 移动图片
+    x_pos += speed
+    if x_pos > 1:
+        x_pos = -scale
+    time.sleep(0.2)
+    
 
-        # 等待一段时间
-        st_canvas.sleep(200)
-
-    # 显示移动完成的图像
-    canvas_result.image(image, end_pos, end_pos + 0.2)
-
-# 加载要移动的图像
-image = Image.open("http://cw.hubwiz.com/images/cw-cta-1.png")
-
-# 定义起始位置和目标位置
-start_pos = 0.3
-end_pos = 0.7
-
-# 移动图像
-move_image(start_pos, end_pos, image)
