@@ -69,7 +69,9 @@ def play_game(difficulty):
         play_game(difficulty)
         
        
-        if __name__ == '__main__':
- 
-    difficulty = st.slider("选择难度", 1, 10, 5)
-    play_game(difficulty)
+   #web app主体部分
+def main():
+   play_game(3)
+
+if __name__ == '__main__':
+    main()
