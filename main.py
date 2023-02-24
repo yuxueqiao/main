@@ -28,11 +28,11 @@ def move_image(start_pos, end_pos, image):
     canvas_result.image(image, end_pos, end_pos + 0.2)
 
 # 加载要移动的图像
-image = Image.open("image.png")
+image = Image.open("http://cw.hubwiz.com/images/cw-cta-1.png")
 
 # 定义起始位置和目标位置
 start_pos = 0.3
 end_pos = 0.7
 
 # 移动图像
-move_image(start_pos, end_pos,  "http://cw.hubwiz.com/images/cw-cta-1.png")
+move_image(start_pos, end_pos, image)
